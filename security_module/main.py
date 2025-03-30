@@ -1,10 +1,17 @@
 import argparse
 import logging
 
-from connectors.sitl.sim_vehicle_manager import SimVehicleManager
+from connectors.sitl.sim_vehicle_manager import (
+    SimVehicleManager,
+)
 from core.security_module import SecurityModule
 
-logging.basicConfig(level=logging.INFO, format="[%(name)s] %(asctime)s %(levelname)s: %(message)s", datefmt="%H:%M:%S")
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s %(levelname)s [%(name)s]: %(message)s",
+    datefmt="%H:%M:%S",
+)
 
 
 if __name__ == "__main__":
@@ -21,7 +28,16 @@ if __name__ == "__main__":
 
     if not argparser.parse_args().no_ardupilot:
         am = SimVehicleManager()
-        am.start_simulation()
+        sm = SecurityModule(
+            sv_manager=am,
+            route_file_path="/Users/hellcat/workspace/ardupilot/security_module/route.json",
+            security_file_path="/Users/hellcat/workspace/ardupilot/security_module/security.json",
+        )
+    else:
+        sm = SecurityModule(
+            route_file_path="/Users/hellcat/workspace/ardupilot/security_module/route.json",
+            security_file_path="/Users/hellcat/workspace/ardupilot/security_module/security.json",
+        )
 
-    sm = SecurityModule()
+    am.start_simulation()
     sm.run()

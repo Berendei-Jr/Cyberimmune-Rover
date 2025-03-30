@@ -1,0 +1,19 @@
+[
+    {
+        "name": "Speed Restriction",
+        "description": "Ограничение скорости",
+        "conditions": [
+            {
+                "name": "GroundSpeed",
+                "value": 3,
+                "description": "Ограничение скорости"
+            }
+        ],
+        "actions": [
+            {
+                "name": "StopAction",
+                "description": "Выключение двигателя"
+            }
+        ]
+    }
+]

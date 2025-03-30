@@ -1,6 +1,6 @@
 import logging
 
-from core.actions import Action
+from core.action import Action
 
 
 class Connector:
@@ -17,6 +17,5 @@ class Connector:
     def get_info(self) -> dict:
         pass
 
-
-def perform_action(self, action: Action) -> None:
-    pass
+    def perform_actions(self, actions: list[Action]) -> None:
+        pass
